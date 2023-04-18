@@ -11,6 +11,9 @@ let moveCircle = false;
 let addedX = 0;
 let addedY = 0;
 
+let popUpTexts = ["Texte aléatoire 1", "Texte aléatoire 2", "Texte aléatoire 3"]; // Textes aléatoires à afficher dans le pop-up
+let popUpActive = false; // Indique si le pop-up est actuellement affiché
+let popUpText = ""; // Texte à afficher dans le pop-up
 
 function preload() {
   // Charger le fichier CSV
@@ -28,14 +31,13 @@ function setup() {
   stopButton.position(20, 20);             
   stopButton.mousePressed(toggleCircles);
   
-  let button = createButton('Chan');
-  button.position(40,40);
+    let button = createButton('Changer vue graphique');
+  button.position(20,60);
   button.mousePressed(modifyCircles);
- 
   
   // Trouver la plus grande valeur dans la colonne "Diameter"
   maxDiameter = max(data.getColumn('Diameter'));
-
+  
   // Dessiner les cercles
   noFill();
   for (let i = 0; i < numCircles; i++) {
@@ -56,16 +58,26 @@ function toggleCircles() {
   }
 }
 
-
-
 function draw() {
-  // Effacer le canvas à chaque frame
+//   // Effacer le canvas à chaque frame
+  if (circlesStopped != true) {
+    circleSpeeds = [0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004, 0.0045, 0.005, 0.0015, 0.0015]; 
+  } 
   background(50);
 
   textSize(40);
   textAlign(CENTER);
   fill(255);
   text("The end of world is not today",600,900);
+  
+  if (popUpActive) {
+    fill(255);
+    rect(width/2 - 100, height/2 - 50, 200, 100);
+    textSize(20);
+    textAlign(CENTER, CENTER);
+    fill(0);
+    text(popUpText, width/2, height/2);
+  }
   
   // Dessiner les cercles en orbite autour des cercles principaux
   for (let i = 0; i < data.getRowCount(); i++) {
@@ -115,13 +127,15 @@ function draw() {
         fill(181, 244, 179)
       }
       
-      
     }
-   // else{
-   //   fill(51, 204, 255) // Bleu
-   // }
        
-      
+    let d = dist(x, y, mouseX, mouseY);
+    if (d < radius/2) {
+      // Modifier la couleur du cercle
+      fill(51, 204, 255);
+      circleSpeeds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    }
+    
     // Dessiner le cercle
     ellipse(x, y, radius);
   }
@@ -130,6 +144,11 @@ function draw() {
   for (let i = 0; i < numCircles; i++) {
     circleAngles[i] += circleSpeeds[i];
   }
+}
+
+function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
+  asteroid.fill(51, 204, 255);
+  circlesStopped(true);
 }
 
 function modifyCircles() {
@@ -143,3 +162,27 @@ function modifyCircles() {
     moveCircle = true;
   }
   }
+
+function mouseClicked() {
+  if (!popUpActive) {
+    // Vérifier si l'utilisateur a cliqué sur un cercle en orbite
+    for (let i = 0; i < data.getRowCount(); i++) {
+      let diameter = data.getNum(i, 'Diameter');
+      let radius = map(diameter, 0, maxDiameter, 10, 100);
+      let circleIndex = i % numCircles;
+      let circleRadius = circleRadii[circleIndex];
+      let angle = map(i, 0, data.getRowCount(), 0, TWO_PI);
+      angle += circleAngles[circleIndex];
+      let x = width/2 + circleRadius * cos(angle)/0.5;
+      let y = height/2 + circleRadius * sin(angle)/1.5;
+      let d = dist(x, y, mouseX, mouseY);
+      if (d < radius) {
+        // L'utilisateur a cliqué sur ce cercle
+        popUpText = random(popUpTexts);
+        popUpActive = true;
+        break;
+      }
+    }
+  }
+}
+
