@@ -28,7 +28,7 @@ function setup() {
   stopButton.position(20, 20);             
   stopButton.mousePressed(toggleCircles);
   
-  let button = createButton('Changer la vue ');
+  let button = createButton('Chan');
   button.position(40,40);
   button.mousePressed(modifyCircles);
  
@@ -38,8 +38,6 @@ function setup() {
 
   // Dessiner les cercles
   noFill();
-  stroke(0);
-  strokeWeight(2);
   for (let i = 0; i < numCircles; i++) {
   ellipse(width/2, height/2, circleRadii[i]*2);
   }
@@ -84,25 +82,44 @@ function draw() {
 
     // Choisir la couleur en fonction de l'IP Max
     let ipMax = data.getNum(i, 'IP');
-    if (ipMax >= 0.87) {
-      fill(255, 20, 0); // Rouge
-      strokeWeight(1)
-      stroke(255);
-    } else if (ipMax >= 0.39) {
-      fill(255, 114, 0); // Orange
-      strokeWeight(1)
-      stroke(255);
-    } else if (ipMax >= 0.1){
-      fill(255,191,0); // Jaune
-      strokeWeight(1)
-      stroke(255);
+    if (ipMax >= 0.87) {            // High
+      if (diameter >= 300){
+        fill(231, 125, 125, 180);
+      }
+      else {
+        fill(231, 125, 125);
+      }
+      
+    } else if (ipMax >= 0.39) {     // Medium
+        if (diameter >=300){
+          fill(248, 193, 129, 180);
+        }
+        else {
+          fill(248, 193, 129)
+        }
+      
+    } else if (ipMax >= 0.1){      // Low
+      if (diameter >= 300) {
+        fill(243, 230, 105, 180);
+      }
+      else {
+        fill(243, 230, 105)
+      }
+      
     }
-    else if (ipMax <0.1 && diameter >= 300){
-      fill(255,255,0,180)
+    else if (ipMax <0.1){        // Very low
+      if (diameter >= 300){
+        fill(181, 244, 179,180)
+      }
+      else {
+        fill(181, 244, 179)
+      }
+      
+      
     }
-   else{
-     fill(255,255,0)
-   }
+   // else{
+   //   fill(51, 204, 255) // Bleu
+   // }
        
       
     // Dessiner le cercle
@@ -126,10 +143,3 @@ function modifyCircles() {
     moveCircle = true;
   }
   }
-
-function mousePressed() {
-  if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 100) {
-    let fs = fullscreen();
-    fullscreen(!fs);
-  }
-}
