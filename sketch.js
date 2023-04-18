@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   // Créer un canvas de 1000x1000 pixels
-  createCanvas(1280,1800);
+  createCanvas(1800,1800);
 
   // Fond gris
   background(255);
