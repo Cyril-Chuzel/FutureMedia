@@ -83,7 +83,7 @@ function draw() {
     // Choisir la couleur en fonction de l'IP Max
     let ipMax = data.getNum(i, 'IP');
     if (ipMax >= 0.87) {            // High
-      if (diameter >= 300){
+      if (diameter >= 150){
         fill(231, 125, 125, 180);
       }
       else {
@@ -91,7 +91,7 @@ function draw() {
       }
       
     } else if (ipMax >= 0.39) {     // Medium
-        if (diameter >=300){
+        if (diameter >=150){
           fill(248, 193, 129, 180);
         }
         else {
@@ -99,7 +99,7 @@ function draw() {
         }
       
     } else if (ipMax >= 0.1){      // Low
-      if (diameter >= 300) {
+      if (diameter >= 150) {
         fill(243, 230, 105, 180);
       }
       else {
@@ -108,7 +108,7 @@ function draw() {
       
     }
     else if (ipMax <0.1){        // Very low
-      if (diameter >= 300){
+      if (diameter >= 150){
         fill(181, 244, 179,180)
       }
       else {
