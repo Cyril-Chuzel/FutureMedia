@@ -1,9 +1,10 @@
 let data;
 let maxDiameter;
-let numCircles = 6; // nombre de cercles
-let circleRadii = [400,500,900,600,700,800]; // rayons des cercles
-let circleAngles = [0, 0,0,0,0,0]; // angles des cercles en orbite
-let circleSpeeds = [0.005, 0.005, 0.005,0.005,0.005,0.005]; // vitesses de rotation des cercles en orbite
+let numCircles = 7; // nombre de cercles
+let circleRadii = [1100,900,800,700,600,500,400,300,1000,1200]; // rayons des cercle
+let circleAngles = [0,0,0,0,0,0,0,0,0,0,0]; // angles des cercles en orbite
+let circleSpeeds = [0.0015,0.002,0.0025,0.003,0.0035,0.004,0.0045,0.005,0.0015,0.0015]; // vitesses de rotation des cercles en orbite
+
 
 function preload() {
   // Charger le fichier CSV
@@ -12,10 +13,10 @@ function preload() {
 
 function setup() {
   // Créer un canvas de 1000x1000 pixels
-  createCanvas(1800, 1800);
+  createCanvas(1280,1800);
 
   // Fond gris
-  background(200);
+  background(255);
 
   // Trouver la plus grande valeur dans la colonne "Diameter"
   maxDiameter = max(data.getColumn('Diameter'));
@@ -25,39 +26,56 @@ function setup() {
   stroke(0);
   strokeWeight(2);
   for (let i = 0; i < numCircles; i++) {
-    ellipse(width/2, height/2, circleRadii[i]*2);
+  ellipse(width/2, height/2, circleRadii[i]*2);
   }
 }
 
 function draw() {
   // Effacer le canvas à chaque frame
-  background(200);
+  background(50);
 
-  // Dessiner les cercles principaux
-  noFill();
-  stroke(0);
-  strokeWeight(2);
-  for (let i = 0; i < numCircles; i++) {
-    let x = width/2;
-    let y = height/2;
-    ellipse(x, y, circleRadii[i]*2);
-  }
-
+  textSize(40);
+  textAlign(CENTER);
+  fill(255);
+  text("The end of world is not today",600,900);
+  
   // Dessiner les cercles en orbite autour des cercles principaux
-  noStroke();
-  fill(0);
   for (let i = 0; i < data.getRowCount(); i++) {
     let diameter = data.getNum(i, 'Diameter');
-    let radius = map(diameter, 0, maxDiameter, 10, 100);
+    let radius = map(diameter, 0, maxDiameter,15, 90);
 
     // Calculer la position en x et y du cercle sur l'orbite
     let circleIndex = i % numCircles; // index du cercle sur lequel le cercle doit être placé
     let circleRadius = circleRadii[circleIndex]; // rayon du cercle sur lequel le cercle doit être placé
     let angle = map(i, 0, data.getRowCount(), 0, TWO_PI); // angle sur l'orbite
     angle += circleAngles[circleIndex]; // ajouter l'angle de rotation du cercle en orbite
-    let x = width/2 + circleRadius * cos(angle);
-    let y = height/2 + circleRadius * sin(angle);
+    let x = width/2 + circleRadius * cos(angle)/0.5;
+    let y = height/2 + circleRadius * sin(angle)/1.5;
 
+    // Choisir la couleur en fonction de l'IP Max
+    let ipMax = data.getNum(i, 'IP');
+    if (ipMax >= 0.87) {
+      fill(255, 20, 0); // Rouge
+      strokeWeight(1)
+      stroke(255);
+    } else if (ipMax >= 0.39) {
+      fill(255, 114, 0); // Orange
+      strokeWeight(1)
+      stroke(255);
+    } else if (ipMax >= 0.1){
+      fill(255,191,0); // Jaune
+      strokeWeight(1)
+      stroke(255);
+    }
+    else if (ipMax <0.1 && diameter >= 300){
+      fill(255,255,0,180)
+    }
+   else{
+     fill(255,255,0)
+   }
+    
+      
+      
     // Dessiner le cercle
     ellipse(x, y, radius);
   }
