@@ -20,8 +20,8 @@ function preload() {
 }
 
 function setup() {
-  // Créer un canvas de 1000x1000 pixels
-  createCanvas(1440,1800);
+  // Créer un canvas de la taille de l'écran
+  createCanvas(windowWidth,windowHeight);
   
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
