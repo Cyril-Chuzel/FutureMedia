@@ -21,7 +21,7 @@ function preload() {
 
 function setup() {
   // Créer un canvas de la taille de l'écran
-  createCanvas(windowWidth, 1400);
+  createCanvas(windowWidth, 1500);
   
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
@@ -66,7 +66,7 @@ function draw() {
   textSize(40);
   textAlign(CENTER);
   fill(255);
-  text("The end of the world is not today",700,300);
+  text("The end of the world is not today",800,300);
   
   
   // Dessiner les cercles en orbite autour des cercles principaux
@@ -84,7 +84,7 @@ function draw() {
 
     // Choisir la couleur en fonction de l'IP Max
     let ipMax = data.getNum(i, 'IP');
-    if (ipMax >= 0.87) {            // High
+    if (ipMax >= 0.76) {            // High
       if (diameter >= 150){
         fill(231, 125, 125, 180);
       }
@@ -92,7 +92,7 @@ function draw() {
         fill(231, 125, 125);
       }
       
-    } else if (ipMax >= 0.39) {     // Medium
+    } else if (ipMax >= 0.05) {     // Medium
         if (diameter >=150){
           fill(248, 193, 129, 180);
         }
@@ -100,7 +100,7 @@ function draw() {
           fill(248, 193, 129)
         }
       
-    } else if (ipMax >= 0.1){      // Low
+    } else if (ipMax >= 0.001){      // Low
       if (diameter >= 150) {
         fill(243, 230, 105, 180);
       }
@@ -109,7 +109,7 @@ function draw() {
       }
       
     }
-    else if (ipMax <0.1){        // Very low
+    else if (ipMax <0.001){        // Very low
       if (diameter >= 150){
         fill(181, 244, 179,180)
       }
