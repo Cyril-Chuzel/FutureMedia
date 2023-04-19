@@ -113,7 +113,6 @@ function draw() {
             if (diameter >= 150) { fill(181, 244, 179,180); }
             else { fill(181, 244, 179); } 
         }
-      }
   
       // Animation lorsque la souris passe sur une bulle
       let d = dist(x, y, mouseX, mouseY);
@@ -122,7 +121,7 @@ function draw() {
         fill(51, 204, 255);
         circleSpeeds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       }
-
+     }
       // Afficher les bulles
       ellipse(x, y, radius);
 
