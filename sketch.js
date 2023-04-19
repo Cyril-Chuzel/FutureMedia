@@ -66,7 +66,7 @@ function draw() {
   textSize(40);
   textAlign(CENTER);
   fill(255);
-  text("The end of the world is not today",800,300);
+  text("The end of the world is not today",700,300);
   
   
   // Dessiner les cercles en orbite autour des cercles principaux
