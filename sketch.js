@@ -1,37 +1,31 @@
 let data;
 let maxDiameter;
-let numCircles = 7; // nombre de cercles
-let circleRadii = [1100,900,800,700,600,500,400,300,1000,1200]; // rayons des cercle
-let circleAngles = [0,0,0,0,0,0,0,0,0,0,0]; // angles des cercles en orbite
-let circleSpeeds = [0.0015,0.002,0.0025,0.003,0.0035,0.004,0.0045,0.005,0.0015,0.0015]; // vitesses de rotation des cercles en orbite
-let stopButton;
+let numCircles = 10; // nombre de cercles
+let circleRadii = [100,150,200,250,300,350,400,450,500,550,600]; // rayons des cercle
+let circleAngles = [0,0,0,0,0,0,0,0,0,0,0,0]; // angles des cercles en orbite
+let circleSpeeds = [0.005, 0.0035, 0.0025, 0.002, 0.0015, 0.001, 0.0008, 0.0006, 0.0004,0.0003]; // vitesses de rotation des cercles en orbite
 let circlesStopped = false;
 let moveCircle = false;
 
 let addedX = 0;
 let addedY = 0;
 
-let popUpTexts = ["Texte aléatoire 1", "Texte aléatoire 2", "Texte aléatoire 3"]; // Textes aléatoires à afficher dans le pop-up
-let popUpActive = false; // Indique si le pop-up est actuellement affiché
-let popUpText = ""; // Texte à afficher dans le pop-up
-
 function preload() {
   // Charger le fichier CSV
   data = loadTable('risklist.csv', 'csv', 'header');
+  // Charger l'image de légende
+  legend = loadImage('Legende meta future.png');
 }
 
 function setup() {
   // Créer un canvas de 1000x1000 pixels
   createCanvas(1440,1800);
-
-  // Fond gris
-  background(255);
   
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
   stopButton.mousePressed(toggleCircles);
   
-    let button = createButton('Changer vue graphique');
+  let button = createButton('Changer vue graphique');
   button.position(20,60);
   button.mousePressed(modifyCircles);
   
@@ -41,14 +35,13 @@ function setup() {
   // Dessiner les cercles
   noFill();
   for (let i = 0; i < numCircles; i++) {
-  ellipse(width/2, height/2, circleRadii[i]*2);
+  ellipse(width/4, height/4, circleRadii[i]*2);
   }
 }
 
 function toggleCircles() {
   // Si les cercles sont en mouvement, les arrêter, sinon les redémarrer
   if (circlesStopped) {
-    circleSpeeds = [0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004, 0.0045, 0.005, 0.0015, 0.0015];
     circlesStopped = false;
     stopButton.html('Stop'); // changer le texte du bouton
   } else {
@@ -59,30 +52,22 @@ function toggleCircles() {
 }
 
 function draw() {
-//   // Effacer le canvas à chaque frame
+  
   if (circlesStopped != true) {
-    circleSpeeds = [0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004, 0.0045, 0.005, 0.0015, 0.0015]; 
+    circleSpeeds = [0.005, 0.0035, 0.0025, 0.002, 0.0015, 0.001, 0.0008, 0.0006, 0.0004,0.0003]; 
   } 
   background(50);
 
   textSize(40);
   textAlign(CENTER);
   fill(255);
-  text("The end of world is not today",600,900);
+  text("The end of world is not today",700,300);
   
-  if (popUpActive) {
-    fill(255);
-    rect(width/2 - 100, height/2 - 50, 200, 100);
-    textSize(20);
-    textAlign(CENTER, CENTER);
-    fill(0);
-    text(popUpText, width/2, height/2);
-  }
   
   // Dessiner les cercles en orbite autour des cercles principaux
   for (let i = 0; i < data.getRowCount(); i++) {
     let diameter = data.getNum(i, 'Diameter');
-    let radius = map(diameter, 0, maxDiameter,15, 90);
+    let radius = map(diameter, 0, maxDiameter,10,30);
 
     // Calculer la position en x et y du cercle sur l'orbite
     let circleIndex = i % numCircles; // index du cercle sur lequel le cercle doit être placé
@@ -144,6 +129,9 @@ function draw() {
   for (let i = 0; i < numCircles; i++) {
     circleAngles[i] += circleSpeeds[i];
   }
+  fill(255);
+rect(width-200, height-220, 180, 170);
+
 }
 
 function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
@@ -158,31 +146,7 @@ function modifyCircles() {
     moveCircle = false;
   }
   else{
-    addedX += 0.5
+    addedX += 1
     moveCircle = true;
   }
   }
-
-function mouseClicked() {
-  if (!popUpActive) {
-    // Vérifier si l'utilisateur a cliqué sur un cercle en orbite
-    for (let i = 0; i < data.getRowCount(); i++) {
-      let diameter = data.getNum(i, 'Diameter');
-      let radius = map(diameter, 0, maxDiameter, 10, 100);
-      let circleIndex = i % numCircles;
-      let circleRadius = circleRadii[circleIndex];
-      let angle = map(i, 0, data.getRowCount(), 0, TWO_PI);
-      angle += circleAngles[circleIndex];
-      let x = width/2 + circleRadius * cos(angle)/0.5;
-      let y = height/2 + circleRadius * sin(angle)/1.5;
-      let d = dist(x, y, mouseX, mouseY);
-      if (d < radius) {
-        // L'utilisateur a cliqué sur ce cercle
-        popUpText = random(popUpTexts);
-        popUpActive = true;
-        break;
-      }
-    }
-  }
-}
-
