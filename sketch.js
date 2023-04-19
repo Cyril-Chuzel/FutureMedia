@@ -55,7 +55,8 @@ function toggleCircles() {
 
 function draw() {
   
-   img.position(50, 50);
+ img.position(20,100);
+ img.size(200,248);
   
   if (circlesStopped != true) {
     circleSpeeds = [0.005, 0.0035, 0.0025, 0.002, 0.0015, 0.001, 0.0008, 0.0006, 0.0004,0.0003]; 
