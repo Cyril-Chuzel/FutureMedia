@@ -149,4 +149,3 @@ function modifyCircles() {
     moveCircle = true;
   }
 }
-}
