@@ -21,7 +21,7 @@ function preload() {
 
 function setup() {
   // Créer un canvas de la taille de l'écran
-  createCanvas(windowWidth, 1800);
+  createCanvas(windowWidth, 1400);
   
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
@@ -135,8 +135,6 @@ function draw() {
     circleAngles[i] += circleSpeeds[i];
   }
   fill(255);
-rect(width-200, height-220, 180, 170);
-
 }
 
 function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
