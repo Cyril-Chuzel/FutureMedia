@@ -22,7 +22,7 @@ function preload() {
 function setup() {
   // Créer un canvas de la taille de l'écran
   image(img, 0, 0);
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth,1000);
   
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
