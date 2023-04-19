@@ -49,7 +49,7 @@ function setup() {
   
   // Trouver la plus grande valeur dans la colonne "Diameter"
   maxDiameter = max(data.getColumn('Diameter'));
-
+}
 function toggleCircles() {
   // Si les bulles sont en mouvement, les arrêter, sinon les redémarrer
   if (circlesStopped) {
@@ -121,15 +121,15 @@ function draw() {
         fill(51, 204, 255);
         circleSpeeds = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       }
-     }
+  
       // Afficher les bulles
       ellipse(x, y, radius);
+      }
 
       // Anime la rotation des bulles sur l'orbite
       for (let i = 0; i < numCircles; i++) {
         circleAngles[i] += circleSpeeds[i];
       }
-    }
 }
 
 function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
