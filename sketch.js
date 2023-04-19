@@ -142,13 +142,12 @@ function draw() {
     
     // Afficher les bulles
     ellipse(x, y, radius);
-  }
 
-  // Anime la rotation des bulles sur l'orbite
-  for (let i = 0; i < numCircles; i++) {
-    circleAngles[i] += circleSpeeds[i];
+    // Anime la rotation des bulles sur l'orbite
+    for (let i = 0; i < numCircles; i++) {
+      circleAngles[i] += circleSpeeds[i];
+    }
   }
-}
 
 function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
   asteroid.fill(51, 204, 255);
@@ -165,4 +164,4 @@ function modifyCircles() {
     addedX += 1
     moveCircle = true;
   }
-  }
+ }
