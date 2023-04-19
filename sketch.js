@@ -16,7 +16,7 @@ function preload() {
   // Charger le fichier CSV
   data = loadTable('risklist.csv', 'csv', 'header');
   // Charger l'image de légende
-  img = createImg('Legende meta future.png');
+  img = createImg('Legende.png');
 }
 
 function setup() {
