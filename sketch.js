@@ -116,7 +116,8 @@ function draw() {
         else {
           fill(181, 244, 179)
         }
-       
+      }
+    
     let d = dist(x, y, mouseX, mouseY);
     if (d < radius/2) {
       // Modifier la couleur du cercle
