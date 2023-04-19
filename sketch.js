@@ -21,6 +21,7 @@ function preload() {
 
 function setup() {
   // Créer un canvas de la taille de l'écran
+  image(img, 0, 0);
   createCanvas(windowWidth,windowHeight);
   
   stopButton = createButton('Stop');
@@ -39,8 +40,6 @@ function setup() {
   for (let i = 0; i < numCircles; i++) {
   ellipse(width/4, height/4, circleRadii[i]*2);
   }
-  
-  image(img, 0, 0);
 }
 
 function toggleCircles() {
