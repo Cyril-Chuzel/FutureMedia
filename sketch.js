@@ -38,7 +38,7 @@ function setup() {
   ellipse(width/4, height/4, circleRadii[i]*2);
   }
   
-  image(legend, 80, 400);
+  image(legend, 0, 0);
 }
 
 function toggleCircles() {
