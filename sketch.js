@@ -79,7 +79,7 @@ function draw() {
     textSize(40);
     textAlign(CENTER);
     fill(255);
-    text("The end of the world is not today",1000,300);
+    text("The end of the world is not today",850,300);
     textFont('Inter');
 
 
