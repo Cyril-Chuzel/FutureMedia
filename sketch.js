@@ -80,6 +80,7 @@ function draw() {
     textAlign(CENTER);
     fill(255);
     text("The end of the world is not today",700,300);
+    textFont('Inter');
 
 
     // Dessiner les bulles sur les orbites
