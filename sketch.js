@@ -16,7 +16,7 @@ function preload() {
   // Charger le fichier CSV
   data = loadTable('risklist.csv', 'csv', 'header');
   // Créer l'image de légende
-  img = createImg('Legende.png');
+  img = createImg('Legende.png', 'légende du graphique');
 }
 
 function setup() {
@@ -131,6 +131,7 @@ function draw() {
         circleAngles[i] += circleSpeeds[i];
       }
     }
+}
 
 function cercleHover(cercle){    //Mettre en surbrillance les cercles hovered
   asteroid.fill(51, 204, 255);
