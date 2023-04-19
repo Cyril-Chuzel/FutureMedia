@@ -37,6 +37,8 @@ function setup() {
   for (let i = 0; i < numCircles; i++) {
   ellipse(width/4, height/4, circleRadii[i]*2);
   }
+  
+  image(legend, 80, 400);
 }
 
 function toggleCircles() {
