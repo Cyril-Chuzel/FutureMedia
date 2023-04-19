@@ -69,7 +69,7 @@ function toggleCircles() {
 
 function draw() {
   
- img.position(20,100);
+ img.position(20,150);
  img.size(200,248);
   
   if (circlesStopped != true) {
