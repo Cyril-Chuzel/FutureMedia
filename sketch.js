@@ -10,11 +10,13 @@ let moveCircle = false;
 let addedX = 0;
 let addedY = 0;
 
+let img;
+
 function preload() {
   // Charger le fichier CSV
   data = loadTable('risklist.csv', 'csv', 'header');
   // Charger l'image de légende
-  legend = loadImage('Legende meta future.png');
+  img = loadImage('Legende meta future.png');
 }
 
 function setup() {
@@ -38,7 +40,7 @@ function setup() {
   ellipse(width/4, height/4, circleRadii[i]*2);
   }
   
-  image(legend, 0, 0);
+  image(img, 0, 0);
 }
 
 function toggleCircles() {
@@ -63,7 +65,7 @@ function draw() {
   textSize(40);
   textAlign(CENTER);
   fill(255);
-  text("The end of world is not today",700,300);
+  text("The end of the world is not today",700,300);
   
   
   // Dessiner les cercles en orbite autour des cercles principaux
