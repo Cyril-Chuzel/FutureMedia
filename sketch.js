@@ -26,10 +26,24 @@ function setup() {
   stopButton = createButton('Stop');
   stopButton.position(20, 20);             
   stopButton.mousePressed(toggleCircles);
+  stopButton.style('background-color', '#66D3F8'); // couleur rouge
+  stopButton.style('color', '#ffff'); // texte blanc
+  stopButton.style('padding', '10px 20px'); // espacement interne du texte
+  stopButton.style('border', 'none'); // pas de bordure
+  stopButton.style('border-radius', '4px'); // bordure arrondie
+  stopButton.style('font-size', '16px'); // taille de police
+  stopButton.style('cursor', 'pointer');
   
   let button = createButton('Changer vue graphique');
-  button.position(20,60);
+  button.position(20,80);
   button.mousePressed(modifyCircles);
+  button.style('background-color', '#66D3F8'); // couleur rouge
+  button.style('color', '#ffff'); // texte blanc
+  button.style('padding', '10px 20px'); // espacement interne du texte
+  button.style('border', 'none'); // pas de bordure
+  button.style('border-radius', '4px'); // bordure arrondie
+  button.style('font-size', '16px'); // taille de police
+  button.style('cursor', 'pointer');
   
   // Trouver la plus grande valeur dans la colonne "Diameter"
   maxDiameter = max(data.getColumn('Diameter'));
