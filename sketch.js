@@ -16,12 +16,11 @@ function preload() {
   // Charger le fichier CSV
   data = loadTable('risklist.csv', 'csv', 'header');
   // Charger l'image de légende
-  img = loadImage('Legende meta future.png');
+  img = createImg('Legende meta future.png');
 }
 
 function setup() {
   // Créer un canvas de la taille de l'écran
-  image(img, 0, 0);
   createCanvas(windowWidth, 1800);
   
   stopButton = createButton('Stop');
@@ -55,6 +54,8 @@ function toggleCircles() {
 }
 
 function draw() {
+  
+   img.position(50, 50);
   
   if (circlesStopped != true) {
     circleSpeeds = [0.005, 0.0035, 0.0025, 0.002, 0.0015, 0.001, 0.0008, 0.0006, 0.0004,0.0003]; 
