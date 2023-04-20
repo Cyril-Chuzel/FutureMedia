@@ -35,7 +35,7 @@ function setup() {
   stopButton.style('font-size', '16px'); // taille de police
   stopButton.style('cursor', 'pointer');
   
-  let button = createButton('Changer vue graphique');
+  let button = createButton('Change the graph view');
   button.position(20,80);
   button.mousePressed(modifyCircles);
   button.style('background-color', '#0281F8'); // couleur de fond bleu foncé
